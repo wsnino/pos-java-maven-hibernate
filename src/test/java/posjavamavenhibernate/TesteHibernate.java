@@ -14,12 +14,12 @@ public class TesteHibernate {
 		
 		UsuarioPessoa pessoa = new UsuarioPessoa();
 		
-		pessoa.setIdade(88);
+		pessoa.setIdade(34);
 		pessoa.setLogin("teste");
-		pessoa.setNome("D silvia");
-		pessoa.setSenha("7777");
-		pessoa.setSobrenome("conceicao");
-		pessoa.setEmail("silvia@gmail.com");
+		pessoa.setNome("marcelo pereira");
+		pessoa.setSenha("3827");
+		pessoa.setSobrenome("pereira");
+		pessoa.setEmail("wsnino.contato@gmail.com");
 		
 		daoGeneric.salvar(pessoa);
 				
@@ -39,7 +39,7 @@ public class TesteHibernate {
 	public void testeBuscar2() {
 		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
 		
-		UsuarioPessoa pessoa = daoGeneric.pesquisar(1L, UsuarioPessoa.class);
+		UsuarioPessoa pessoa = daoGeneric.pesquisar(3L, UsuarioPessoa.class);
 		
 		System.out.println(pessoa);
 	}
@@ -47,14 +47,25 @@ public class TesteHibernate {
 	@Test
 	public void testeUpdate() {
 		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
-		UsuarioPessoa pessoa = daoGeneric.pesquisar(1L, UsuarioPessoa.class);
+		UsuarioPessoa pessoa = daoGeneric.pesquisar(13L, UsuarioPessoa.class);
 		
-		pessoa.setIdade(99);
-		pessoa.setNome("Marcelo Developer java ");
+		pessoa.setIdade(46);
+		pessoa.setNome("Marcelo Developer java BIONEXO  ");
 		pessoa.setSobrenome("pereira");
 		
 		pessoa = daoGeneric.updateMerge(pessoa);
 		
 		System.out.println(pessoa);
+	}
+	
+	@Test
+	public void testeDelete() {
+		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+		
+		UsuarioPessoa pessoa = daoGeneric.pesquisar(7L, UsuarioPessoa.class);
+		
+		daoGeneric.deletePoId(pessoa);
+		
+		
 	}
 }
