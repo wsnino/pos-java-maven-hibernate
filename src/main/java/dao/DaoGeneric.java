@@ -1,5 +1,6 @@
 package dao;
 
+import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
@@ -14,6 +15,15 @@ public class DaoGeneric<E> {
 		transaction.begin();
 		entityManager.persist(entidade);
 		transaction.commit();
+	}
+	
+	public E updateMerge(E entidade) {
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
+		E entidadeSalva = entityManager.merge(entidade);
+		transaction.commit();
+		
+		return entidadeSalva;
 	}
 	
 	public E pesquisar(E entidade) {

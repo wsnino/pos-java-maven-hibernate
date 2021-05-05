@@ -32,5 +32,6 @@ public class HibernateUtil {
 	public static Object getPrimaryKey(Object entity ) {
 		return factory.getPersistenceUnitUtil().getIdentifier(entity);
 	}
+	
 
 }
