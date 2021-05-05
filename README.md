@@ -1,0 +1,2 @@
+# pos-java-maven-hibernate
+JPA + HIBERNATE-ABORDAGENM COM JUNIT E TESTE DE MÉTODOS
