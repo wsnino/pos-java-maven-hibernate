@@ -79,7 +79,18 @@ public class TesteHibernate {
 		for (UsuarioPessoa usuarioPessoa : list) {
 			System.out.println(usuarioPessoa);
 			System.out.println("================================================");
-		}
+		}		
+	}
+	
+	@Test
+	public void testeQuerList() {
+		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+		List<UsuarioPessoa> list = daoGeneric.getEntityManager()
+				.createQuery("from UsuarioPessoa where idade = 46").getResultList();
 		
+		for (UsuarioPessoa usuarioPessoa : list) {
+			System.out.println(usuarioPessoa);
+			System.out.println("================================================");
+		}
 	}
 }
