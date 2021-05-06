@@ -6,6 +6,7 @@ import org.hibernate.metamodel.model.domain.spi.SetPersistentAttribute;
 import org.junit.Test;
 
 import dao.DaoGeneric;
+import model.TelefoneUser;
 import model.UsuarioPessoa;
 
 public class TesteHibernate {
@@ -157,5 +158,35 @@ public class TesteHibernate {
 			System.out.println(usuarioPessoa);
 			System.out.println("==================================================================================");
 		}
+	}
+	
+	@Test
+	public void testeGravarTelefone() {
+		DaoGeneric daoGeneric = new DaoGeneric();
+		
+		UsuarioPessoa pessoa = (UsuarioPessoa) daoGeneric.pesquisar(9L, UsuarioPessoa.class);
+		
+		TelefoneUser telefoneUser = new TelefoneUser();
+		telefoneUser.setTipo("casa");
+		telefoneUser.setNumero("21931490");
+		telefoneUser.setUsuarioPessoa(pessoa);
+		
+		daoGeneric.salvar(telefoneUser);
+	}
+	
+	@Test
+	public void testeConsultaTelefone() {
+		DaoGeneric daoGeneric = new DaoGeneric();
+		
+		UsuarioPessoa pessoa = (UsuarioPessoa) daoGeneric.pesquisar(9L, UsuarioPessoa.class);
+		
+		for (TelefoneUser fone : pessoa.getTelefoneUsers()) {
+			System.out.println(fone.getNumero());
+			System.out.println(fone.getTipo());
+			System.out.println(fone.getUsuarioPessoa().getNome());
+			System.out.println(fone.getUsuarioPessoa().getEmail());
+			System.out.println("==================================================================================");
+		}
+		
 	}
 }
