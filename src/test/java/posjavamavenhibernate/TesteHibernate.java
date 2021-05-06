@@ -2,6 +2,7 @@ package posjavamavenhibernate;
 
 import java.util.List;
 
+import org.hibernate.metamodel.model.domain.spi.SetPersistentAttribute;
 import org.junit.Test;
 
 import dao.DaoGeneric;
@@ -130,5 +131,31 @@ public class TesteHibernate {
 		
 		System.out.println("Soma de todas as Idades é --> " + somaIdade);
 
+	}
+	
+	@Test
+	public void testeNameQuery() {
+		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+		List<UsuarioPessoa> list = daoGeneric.getEntityManager().
+				createNamedQuery("UsuarioPessoa.todos").getResultList();
+		
+		for (UsuarioPessoa usuarioPessoa : list) {
+			System.out.println(usuarioPessoa);
+			System.out.println("==================================================================================");
+		}
+	}
+	
+	@Test
+	public void testeNameQuery2() {
+		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+		List<UsuarioPessoa> list = daoGeneric.getEntityManager().
+				createNamedQuery("UsuarioPessoa.buscarPorNome")
+				.setParameter("nome", "gege")
+				.getResultList();
+		
+		for (UsuarioPessoa usuarioPessoa : list) {
+			System.out.println(usuarioPessoa);
+			System.out.println("==================================================================================");
+		}
 	}
 }
